@@ -48,8 +48,9 @@ LDFLAGS += -sASYNCIFY
 LDFLAGS += -sWASM=1
 LDFLAGS += -sINITIAL_MEMORY=80mb
 LDFLAGS += -sENVIRONMENT=web
-LDFLAGS += --closure 1
+LDFLAGS += --closure=1
 LDFLAGS += --preload-file data
+LDFLAGS += -flto
 
 SRCS :=
 SRCS += dosbox/dbopl.cpp
