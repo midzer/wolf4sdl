@@ -4292,7 +4292,7 @@ CheckForEpisodes (void)
 // ENGLISH
 //
 #ifdef UPLOAD
-    if(!stat("vswap.wl1", &statbuf))
+    if(!stat("data/vswap.wl1", &statbuf))
     {
         strcpy (extension, "wl1");
         numEpisodesMissing = 5;
@@ -4322,7 +4322,7 @@ CheckForEpisodes (void)
         }
         else
         {
-            if(!stat("vswap.wl1", &statbuf))
+            if(!stat("data/vswap.wl1", &statbuf))
             {
                 strcpy (extension, "wl1");
                 numEpisodesMissing = 5;

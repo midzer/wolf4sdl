@@ -16,7 +16,7 @@ uint8_t **PMPages;
 
 void PM_Startup()
 {
-    char fname[13] = "vswap.";
+    char fname[13] = "data/vswap.";
     strcat(fname,extension);
 
     FILE *file = fopen(fname,"rb");

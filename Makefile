@@ -2,7 +2,7 @@ CONFIG ?= config.default
 -include $(CONFIG)
 
 
-BINARY    ?= wolf3d
+BINARY    ?= index.html
 PREFIX    ?= /usr/local
 MANPREFIX ?= $(PREFIX)
 
@@ -12,26 +12,31 @@ INSTALL_MAN     ?= $(INSTALL) -m 444
 INSTALL_DATA    ?= $(INSTALL) -m 444
 
 
-SDL_CONFIG  ?= pkg-config sdl2 SDL2_mixer
-CFLAGS_SDL  ?= $(shell $(SDL_CONFIG) --cflags)
-LDFLAGS_SDL ?= $(shell $(SDL_CONFIG) --libs)
+SDL_CONFIG  ?= 
+CFLAGS_SDL  ?= 
+LDFLAGS_SDL ?= 
 
 
 CFLAGS += $(CFLAGS_SDL)
 
-CFLAGS += -Wall
+#CFLAGS += -Wall
 #CFLAGS += -W
-CFLAGS += -Wpointer-arith
-CFLAGS += -Wreturn-type
-CFLAGS += -Wwrite-strings
-CFLAGS += -Wcast-align
-
+#CFLAGS += -Wpointer-arith
+#CFLAGS += -Wreturn-type
+#CFLAGS += -Wwrite-strings
+#CFLAGS += -Wcast-align
+CFLAGS += -sUSE_SDL=2
+CFLAGS += -sUSE_SDL_MIXER=2
+CFLAFS += -sSUPPORT_ERRNO=0
+CFLAGS += -O3
+CFLAGS += -g0
+CFLAGS += -flto
 
 CCFLAGS += $(CFLAGS)
 CCFLAGS += -std=gnu99
 CCFLAGS += -Werror-implicit-function-declaration
-CCFLAGS += -Wimplicit-int
-CCFLAGS += -Wsequence-point
+#CCFLAGS += -Wimplicit-int
+#CCFLAGS += -Wsequence-point
 
 CXXFLAGS += $(CFLAGS)
 
@@ -39,6 +44,12 @@ LDFLAGS += $(LDFLAGS_SDL)
 ifneq (,$(findstring MINGW,$(shell uname -s)))
 LDFLAGS += -static-libgcc
 endif
+LDFLAGS += -sASYNCIFY
+LDFLAGS += -sWASM=1
+LDFLAGS += -sINITIAL_MEMORY=80mb
+LDFLAGS += -sENVIRONMENT=web
+LDFLAGS += --closure 1
+LDFLAGS += --preload-file data
 
 SRCS :=
 SRCS += dosbox/dbopl.cpp
