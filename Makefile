@@ -19,24 +19,22 @@ LDFLAGS_SDL ?=
 
 CFLAGS += $(CFLAGS_SDL)
 
-#CFLAGS += -Wall
-#CFLAGS += -W
-#CFLAGS += -Wpointer-arith
-#CFLAGS += -Wreturn-type
-#CFLAGS += -Wwrite-strings
-#CFLAGS += -Wcast-align
+CFLAGS += -Wall
+CFLAGS += -W
+CFLAGS += -Wpointer-arith
+CFLAGS += -Wreturn-type
+CFLAGS += -Wwrite-strings
+CFLAGS += -Wcast-align
 CFLAGS += -sUSE_SDL=2
 CFLAGS += -sUSE_SDL_MIXER=2
-CFLAFS += -sSUPPORT_ERRNO=0
-CFLAGS += -O3
-CFLAGS += -g0
 CFLAGS += -flto
+CFLAGS += -fno-rtti -fno-exceptions
 
 CCFLAGS += $(CFLAGS)
 CCFLAGS += -std=gnu99
 CCFLAGS += -Werror-implicit-function-declaration
-#CCFLAGS += -Wimplicit-int
-#CCFLAGS += -Wsequence-point
+CCFLAGS += -Wimplicit-int
+CCFLAGS += -Wsequence-point
 
 CXXFLAGS += $(CFLAGS)
 
@@ -44,13 +42,14 @@ LDFLAGS += $(LDFLAGS_SDL)
 ifneq (,$(findstring MINGW,$(shell uname -s)))
 LDFLAGS += -static-libgcc
 endif
-LDFLAGS += -sASYNCIFY
-LDFLAGS += -sWASM=1
-LDFLAGS += -sINITIAL_MEMORY=80mb
-LDFLAGS += -sENVIRONMENT=web
-LDFLAGS += --closure=1
-LDFLAGS += --preload-file data
+LDFLAGS += -O3
 LDFLAGS += -flto
+LDFLAGS += -fno-rtti -fno-exceptions
+LDFLAGS += -sASYNCIFY -sASYNCIFY_ONLY=@funcs.txt -sASYNCIFY_IGNORE_INDIRECT
+LDFLAGS += -sINITIAL_MEMORY=64MB
+LDFLAGS += -sENVIRONMENT=web
+LDFLAGS += --preload-file data
+LDFLAGS += --closure=1
 
 SRCS :=
 SRCS += dosbox/dbopl.cpp

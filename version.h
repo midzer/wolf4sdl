@@ -40,7 +40,7 @@
 //#define USE_SNOW            // Enables snow support (see wl_atmos.cpp)
 //#define FIXRAINSNOWLEAKS    // Enables leaking ceilings fix (by Adam Biser, only needed if maps with rain/snow and ceilings exist)
 
-#define DEBUGKEYS             // Comment this out to compile without the Tab debug keys
+//#define DEBUGKEYS             // Comment this out to compile without the Tab debug keys
 #define ARTSEXTERN
 #define DEMOSEXTERN
 #define PLAYDEMOLIKEORIGINAL  // When playing or recording demos, several bug fixes do not take

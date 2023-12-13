@@ -9,6 +9,7 @@
 #include "wl_def.h"
 #include "wl_atmos.h"
 #include <SDL_syswm.h>
+#include <emscripten.h>
 
 
 /*
@@ -1857,6 +1858,8 @@ void CheckParameters(int argc, char *argv[])
 
 int main (int argc, char *argv[])
 {
+    emscripten_set_main_loop(&GameLoop, 0, 0);
+
     CheckParameters(argc, argv);
 
     CheckForEpisodes();
